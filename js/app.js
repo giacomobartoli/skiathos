@@ -10,6 +10,20 @@ function todayISO() {
   return d.toISOString().slice(0, 10);
 }
 
+function renderCarousel(images) {
+  if (!images || !images.length) return "";
+  return `
+    <div class="carousel">
+      ${images.map(img => `
+        <div class="carousel-slide">
+          <img src="${img.src}" alt="${img.caption}" loading="lazy" />
+          <span class="carousel-caption">${img.caption}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderBlocks(blocks) {
   if (!blocks.length) {
     return `<div class="empty-state">
@@ -43,6 +57,28 @@ function renderBlocks(blocks) {
   }
   flushNotes();
   return out;
+}
+
+function renderEvening(evening) {
+  const { dinner, activity } = evening;
+
+  let dinnerLine;
+  if (dinner.status === "home") {
+    dinnerLine = `<li><span class="ic">🏠</span><span>Cena a casa — ${dinner.html}</span></li>`;
+  } else if (dinner.status === "restaurant") {
+    dinnerLine = `<li><span class="ic">🍽️</span><span>Cena al ristorante — ${dinner.html}</span></li>`;
+  } else {
+    dinnerLine = `<li class="tbd"><span class="ic">❔</span><span>Cena da definire</span></li>`;
+  }
+
+  const activityLine = activity ? `<li><span class="ic">🌙</span><span>${activity}</span></li>` : "";
+
+  return `
+    <div class="evening-section">
+      <div class="evening-label">Sera</div>
+      <ul class="block-notes evening-notes">${dinnerLine}${activityLine}</ul>
+    </div>
+  `;
 }
 
 function formatDate(iso) {
@@ -80,7 +116,9 @@ function buildUI(data) {
           ${!day.isComplete ? '<span class="tbd-badge">Da definire</span>' : ""}
         </div>
       </div>
+      ${renderCarousel(day.images)}
       ${renderBlocks(day.blocks)}
+      ${renderEvening(day.evening)}
     `;
     container.appendChild(card);
   });
@@ -102,6 +140,17 @@ loadItinerary().then(buildUI).catch(err => {
 });
 
 if ("serviceWorker" in navigator) {
+  // quando una nuova versione del service worker prende il controllo
+  // (perché abbiamo pubblicato un programma aggiornato), ricarica la
+  // pagina in automatico: così basta riaprire l'app per vedere i dati
+  // freschi, senza doverla reinstallare o riaprire due volte.
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").catch(err => console.error("SW registration failed", err));
   });

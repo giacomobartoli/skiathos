@@ -15,6 +15,7 @@ webapp/
   manifest.webmanifest      <- config PWA
   sw.js                      <- service worker (cache offline)
   icons/
+  images/places/             <- foto dei luoghi per il carosello (vedi sotto)
   scripts/
     xlsx_to_json.py          <- rigenera data/itinerary.json da ../Skiathos.xlsx
     make_icons.py             <- rigenera le icone
@@ -28,7 +29,25 @@ webapp/
    cd webapp
    python3 scripts/xlsx_to_json.py
    ```
+   Questo comando rigenera anche la "versione" della cache del service worker
+   (basata su un hash di tutti i file dell'app), quindi va rilanciato anche
+   dopo aver modificato codice (CSS/JS), non solo l'Excel — altrimenti chi ha
+   già installato la PWA continuerebbe a vedere la versione vecchia.
 3. Verifica in locale (vedi sotto), poi fai commit/push per pubblicare.
+
+## Foto dei luoghi (carosello)
+
+Ogni giorno mostra in cima alla card un carosello con le foto dei luoghi
+citati in quella giornata (spiagge, monasteri, ecc.), riconosciuti
+automaticamente nel testo. Le foto vivono in `images/places/<slug>.jpg`;
+l'elenco dei luoghi riconosciuti e il relativo slug sono in `QUERY_TO_SLUG`
+e `SLUG_LABELS` dentro `scripts/xlsx_to_json.py`. Se per un luogo non esiste
+il file immagine corrispondente, l'app lo salta semplicemente (nessuna icona
+rotta) — quindi puoi aggiungere le foto gradualmente.
+
+Le foto attuali sono state cercate su Wikimedia Commons con licenza libera;
+`images/places/credits.json` riporta autore/licenza/fonte di ciascuna — utile
+se in futuro vuoi aggiungerne altre o verificarne l'attribuzione.
 
 ## Provarla in locale
 

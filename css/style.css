@@ -217,6 +217,42 @@ main {
 }
 .place-link:hover { text-decoration-color: var(--terracotta); }
 
+.carousel {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 -1.5rem 1.2rem;
+  padding: 0 1.5rem;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar { display: none; }
+.carousel-slide {
+  position: relative;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: min(78%, 320px);
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--sand);
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 0.5rem 0.7rem 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);
+}
+
 .block-heading {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.4rem;
@@ -252,6 +288,33 @@ main {
 }
 .block-notes li .ic { font-size: 1rem; }
 
+.evening-section {
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 2px dashed #e4ecec;
+}
+.evening-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5b4a8f;
+  margin-bottom: 0.6rem;
+}
+.evening-label::before { content: "🌙"; font-size: 0.9rem; }
+.evening-notes li {
+  background: #eee9f7;
+}
+.evening-notes li.tbd {
+  background: transparent;
+  border: 1.5px dashed #b9aede;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
 .empty-state {
   text-align: center;
   padding: 1.5rem 0.5rem 0.5rem;
@@ -268,4 +331,5 @@ main {
 
 @media (min-width: 640px) {
   .day-card { padding: 2.2rem 2.4rem 2.4rem; }
+  .carousel { margin: 0 -2.4rem 1.2rem; padding: 0 2.4rem; }
 }

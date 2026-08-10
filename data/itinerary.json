@@ -27,19 +27,17 @@
           "type": "note",
           "icon": "🛒",
           "html": "spesa"
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
-        },
-        {
-          "type": "note",
-          "icon": "📍",
-          "html": "giro in centro e porto alla ricerca di attività, escursioni e cose da fare"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": "giro in centro e porto alla ricerca di attività, escursioni e cose da fare"
+      }
     },
     {
       "date": "2026-08-16",
@@ -51,19 +49,17 @@
           "type": "note",
           "icon": "🛵",
           "html": "9.00 - CONSEGNA MOTORINO"
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "Vacation kick-off dinner 🥂<br><a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Basilikos%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">BASILIKOS</a>, ore 8"
-        },
-        {
-          "type": "note",
-          "icon": "📍",
-          "html": "Tempo di pagar pegno: Giacomo paga il Moscov Mule a Giulia"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "restaurant",
+          "html": "Vacation kick-off dinner 🥂<br><a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Basilikos%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">BASILIKOS</a>, ore 8"
+        },
+        "activity": "Tempo di pagar pegno: Giacomo paga il Moscov Mule a Giulia"
+      }
     },
     {
       "date": "2026-08-17",
@@ -78,18 +74,23 @@
         {
           "type": "paragraph",
           "html": "Si prende il motorino e si parte alla scoperta della costa orientale di Skiathos, direzione <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Agia%20Eleni%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Aegia Eleni</a> — una stupenda insenatura con una piccola spiaggia di sabbia fine, perfetta per godersi il mare e uno dei tramonti più belli dell’isola.                                               Pranzo direttamente in spiaggia: qualcosa di buono preparato e portato con noi.                                               <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Agia%20Eleni%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Aegia Eleni</a> è anche una meta frequentata dai surfisti, quindi non mancherà un po’ di movimento tra le onde.                                                                                                                      Restiamo fino al tramonto, rigorosamente vista mare.🌅"
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
-        },
-        {
-          "type": "paragraph",
-          "html": "una passeggiata tra le vie del centro, tra negozietti, localini e scorci caratteristici, lasciandoci trasportare dall’atmosfera dell’isola."
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "agia-eleni",
+          "src": "images/places/agia-eleni.jpg",
+          "caption": "Agia Eleni"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": "una passeggiata tra le vie del centro, tra negozietti, localini e scorci caratteristici, lasciandoci trasportare dall’atmosfera dell’isola."
+      }
     },
     {
       "date": "2026-08-18",
@@ -110,14 +111,38 @@
         {
           "type": "paragraph",
           "html": "Un’escursione in giornata a <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Skopelos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Skopelos</a> da Skiathos offre una fuga immersa nella natura più rigogliosa delle Sporadi, a soli 30-45 minuti di navigazione. Tra una passeggiata nei suggestivi vicoli bianchi di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Skopelos%20Town%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Skopelos Town</a> e una sosta nelle spiagge iconiche di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Kastani%20Beach%2C%20Skopelos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Kastani</a> e <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Panormos%20Beach%2C%20Skopelos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Panormos</a>, dove i pini sfiorano il mare turchese, non può mancare una tappa alla spettacolare chiesetta di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Agios%20Ioannis%20Kastri%2C%20Skopelos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Agios Ioannis a Castri</a>, resa famosa dal film Mamma Mia!. Il modo perfetto per vivere il fascino autentico e rilassato dell&#x27;isola prima di rientrare in serata."
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "skopelos",
+          "src": "images/places/skopelos.jpg",
+          "caption": "Skopelos"
+        },
+        {
+          "slug": "kastani",
+          "src": "images/places/kastani.jpg",
+          "caption": "Kastani"
+        },
+        {
+          "slug": "panormos",
+          "src": "images/places/panormos.jpg",
+          "caption": "Panormos"
+        },
+        {
+          "slug": "agios-ioannis-kastri",
+          "src": "images/places/agios-ioannis-kastri.jpg",
+          "caption": "Agios Ioannis a Castri"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-19",
@@ -142,14 +167,23 @@
         {
           "type": "paragraph",
           "html": "<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Moni%20Evangelistrias%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Holy Monastery of the Annunciation to the Virgin Mary</a> / <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Moni%20Evangelistrias%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Monastero di Evangelistria</a> - 30 minuti in scooter"
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "moni-evangelistrias",
+          "src": "images/places/moni-evangelistrias.jpg",
+          "caption": "Monastero di Evangelistria"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-20",
@@ -157,7 +191,15 @@
       "day": 20,
       "owner": "Giulia",
       "blocks": [],
-      "isComplete": false
+      "isComplete": false,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "tbd",
+          "html": null
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-21",
@@ -172,14 +214,17 @@
         {
           "type": "paragraph",
           "html": "Si parte alla scoperta di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Elia%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Elia Beach</a>, conosciuta anche come <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Elia%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Elias</a>, una delle spiagge più belle e appartate di Skiathos, nella parte sud-orientale dell’isola, a circa 13 km dalla capitale. Un vero angolo di paradiso immerso nella natura: acque cristalline dai colori incredibili, fitte pinete profumate e montagne verdi che fanno da cornice a una baia di assoluta pace e tranquillità.  Per pranzo ci fermiamo alla tipica taverna greca sulla spiaggia, per qualcosa di fresco da bere e qualche piatto della cucina greca e locale, rigorosamente vista Egeo."
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-22",
@@ -200,14 +245,33 @@
         {
           "type": "paragraph",
           "html": "Per una delle esperienze più iconiche di Skiathos, la giornata a <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Lalaria%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Lalaria Beach</a> offre uno spettacolo naturale unico, raggiungibile esclusivamente via mare con una gita in barca dal porto vecchio. La mattinata è dedicata al totale relax su questo litorale mozzafiato, famoso per i suoi ciottoli bianchissimi e lisci, le imponenti scogliere a picco e il celebre arco roccioso naturale <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Tripia%20Petra%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Tripia Petra</a>, perfetto per nuotare in acque di un azzurro cristallino. Nel pomeriggio, la maggior parte delle escursioni combina la sosta a Lalaria con una tappa alle suggestive grotte marine di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Skotini%20Cave%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Skotini</a> e <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Galazia%20Cave%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Galazia</a>, o con una visita alle rovine dell&#x27;antica capitale fortificata di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Kastro%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Kastro</a>, arroccata sul promontorio nord dell&#x27;isola, per concludere la giornata tra storia, panorami selvaggi e un tuffo al tramonto."
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "A cozy dinner at home✨"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "lalaria-beach",
+          "src": "images/places/lalaria-beach.jpg",
+          "caption": "Lalaria Beach"
+        },
+        {
+          "slug": "tripia-petra",
+          "src": "images/places/tripia-petra.jpg",
+          "caption": "Tripia Petra"
+        },
+        {
+          "slug": "kastro",
+          "src": "images/places/kastro.jpg",
+          "caption": "Kastro"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "home",
+          "html": "A cozy dinner at home✨"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-23",
@@ -227,14 +291,23 @@
         {
           "type": "paragraph",
           "html": "Per una giornata dal carattere unico e incontaminato, la baia di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Megas%20Gialos%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Megas Gialos</a> (o <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Megas%20Gialos%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Megas Giolas</a>) è la destinazione ideale per chi desidera esplorare il lato più autentico e selvaggio di Skiathos. Situata lungo la costa settentrionale, questa spiaggia di sabbia scura e ciottoli è incastonata tra scogliere imponenti e circondata da una fitta macchia mediterranea che regala un paesaggio quasi incontaminato. La mattinata si trascorre immersi nella quiete totale, nuotando nelle sue acque trasparenti e profonde, particolarmente amate dagli appassionati di snorkeling per la ricchezza dei fondali. Trattandosi di una caletta poco affollata e priva dei grandi servizi delle spiagge del sud, è il luogo perfetto per staccare la spina, godersi la brezza marina in totale relax e vivere la bellezza più pura e viscerale dell&#x27;isola fino al tardo pomeriggio."
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "Dinner at restaurant:"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "megas-gialos",
+          "src": "images/places/megas-gialos.jpg",
+          "caption": "Megas Gialos"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "restaurant",
+          "html": "Dinner at restaurant:"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-24",
@@ -250,14 +323,23 @@
         {
           "type": "paragraph",
           "html": "Per una giornata all&#x27;insegna del totale relax e della natura selvaggia, la spiaggia di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Mikros%20Aselinos%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Mikros Aselinos</a> rappresenta una delle gemme più tranquille della costa nord di Skiathos. Immersa in una baia intima e circondata da una vegetazione rigogliosa che crea uno splendido contrasto con le sue acque cristalline, questa caletta di sabbia e ciottoli è perfetta per chi cerca un&#x27;atmosfera lontana dalla calca. La mattinata scorre lenta tra nuotate e snorkeling lungo le scogliere rocciose che proteggono la baia, mentre a pranzo ci si può rifugiare all&#x27;ombra della caratteristica e informale taverna affacciata sul mare per gustare piatti tradizionali e pesce fresco. Un&#x27;oasi di pace autentica dove lasciarsi cullare dal suono delle onde fino al tardo pomeriggio."
-        },
-        {
-          "type": "note",
-          "icon": "🍽️",
-          "html": "21.15 - <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=The%20Windmill%20Restaurant%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">The Windmill Restaurant</a> *"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "mikros-aselinos",
+          "src": "images/places/mikros-aselinos.jpg",
+          "caption": "Mikros Aselinos"
+        }
+      ],
+      "evening": {
+        "dinner": {
+          "status": "restaurant",
+          "html": "21.15 - <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=The%20Windmill%20Restaurant%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">The Windmill Restaurant</a> *"
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-25",
@@ -271,7 +353,15 @@
           "html": "sistemazione bagagli"
         }
       ],
-      "isComplete": false
+      "isComplete": true,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "tbd",
+          "html": null
+        },
+        "activity": null
+      }
     },
     {
       "date": "2026-08-26",
@@ -290,7 +380,15 @@
           "html": "13.11 MALPENSA EXPRESS"
         }
       ],
-      "isComplete": true
+      "isComplete": true,
+      "images": [],
+      "evening": {
+        "dinner": {
+          "status": "tbd",
+          "html": null
+        },
+        "activity": null
+      }
     }
   ]
 }
