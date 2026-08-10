@@ -325,9 +325,126 @@ main {
 .app-footer {
   text-align: center;
   padding: 1.6rem 1rem 0.5rem;
-  color: rgba(255,255,255,0.75);
+  color: var(--sea-deep);
   font-size: 0.82rem;
 }
+
+/* ---- pagine / tab bar ---- */
+
+body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+
+.page { display: none; }
+.page.active { display: block; }
+
+.page-header {
+  text-align: center;
+  padding: 3rem 1.5rem 1.6rem;
+  color: var(--white);
+}
+.page-eyebrow {
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--sand);
+  opacity: 0.9;
+}
+.page-header h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 7vw, 2.8rem);
+  color: var(--white);
+  text-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+
+.page-main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.tab-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 20;
+  display: flex;
+  background: rgba(15, 76, 117, 0.92);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+}
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.65);
+  font-family: inherit;
+  padding: 0.4rem 0.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.tab-btn.active { color: var(--white); background: rgba(255,255,255,0.12); }
+.tab-ic { font-size: 1.3rem; line-height: 1; }
+.tab-label { font-size: 0.7rem; font-weight: 600; }
+
+/* ---- Info ---- */
+
+.info-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.5rem 1.6rem;
+}
+.info-card-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  color: var(--terracotta);
+  margin: 0 0 1rem;
+}
+
+.contact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.contact-item { border-bottom: 1px dashed #e4ecec; padding-bottom: 0.7rem; }
+.contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+.contact-label { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+.contact-value { font-size: 1rem; font-weight: 600; margin-top: 0.15rem; }
+.contact-value.placeholder { color: var(--ink-soft); font-style: italic; font-weight: 400; }
+.contact-note { font-size: 0.84rem; color: var(--ink-soft); margin-top: 0.1rem; }
+
+.practical-notes { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem; line-height: 1.5; }
+
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.checklist-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.98rem; cursor: pointer; }
+.checklist-item input { width: 19px; height: 19px; accent-color: var(--sea-mid); flex-shrink: 0; }
+.checklist-item.done span { color: var(--ink-soft); text-decoration: line-through; }
+
+/* ---- Social ---- */
+
+.social-intro { color: var(--white); text-align: center; font-size: 0.92rem; margin: 0 0 0.4rem; opacity: 0.9; }
+.social-empty { color: var(--white); text-align: center; padding: 2rem; }
+
+.social-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.social-card {
+  display: flex;
+  gap: 0.9rem;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 0.7rem;
+  align-items: center;
+}
+.social-img { width: 88px; height: 88px; flex-shrink: 0; border-radius: 12px; object-fit: cover; background: var(--sand); }
+.social-img-placeholder { display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+.social-place { margin: 0 0 0.25rem; font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; color: var(--sea-deep); }
+.social-tip { margin: 0; font-size: 0.88rem; line-height: 1.5; color: var(--ink); }
 
 @media (min-width: 640px) {
   .day-card { padding: 2.2rem 2.4rem 2.4rem; }

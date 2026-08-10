@@ -1,0 +1,51 @@
+{
+  "contacts": [
+    {
+      "label": "Alloggio",
+      "value": "Rania Studios, Georgiou Karaiskaki 4A, Skiathos",
+      "note": "Check-in 15 agosto ore 16:00 · Check-out 26 agosto · Prenotazione Booking.com n. 6800132373",
+      "mapsQuery": "Rania Studios, Georgiou Karaiskaki 4A, Skiathos, Grecia"
+    },
+    {
+      "label": "Rania Studios — contatto per il transfer",
+      "value": "+30 698 403 4615",
+      "note": "Chiamare all'arrivo: passano a prendervi per il transfer da/per l'aeroporto",
+      "tel": "+306984034615"
+    },
+    {
+      "label": "Emergenze (numero unico UE)",
+      "value": "112",
+      "note": "Valido in tutta la Grecia, gratuito da qualunque telefono",
+      "tel": "112"
+    },
+    {
+      "label": "Ambasciata / consolato italiano",
+      "value": "Da inserire",
+      "note": null
+    },
+    {
+      "label": "Noleggio motorino — RENT SCOOTER Skiathos",
+      "value": "+30 24270 23715",
+      "note": "Sym St/Sr 125cc · Consegna a Rania Studios domenica 16 agosto ore 9:00, riconsegna martedì 25 agosto sera · rentscooterskiathos@gmail.com",
+      "tel": "+302427023715"
+    }
+  ],
+  "practicalNotes": [
+    "Prese elettriche: stesse dell'Italia (tipo C/F, 230V) — non serve adattatore.",
+    "Valuta: Euro, come in Italia.",
+    "Fuso orario: stesso dell'Italia (nessuna differenza)."
+  ],
+  "packingChecklist": [
+    "Documenti (carta d'identità o passaporto)",
+    "Patente di guida (per il motorino — categoria A1)",
+    "Costumi da bagno",
+    "Crema solare",
+    "Maschera e boccaglio",
+    "Cappello e occhiali da sole",
+    "Ciabatte da scoglio",
+    "Powerbank",
+    "Repellente per insetti",
+    "Kit primo soccorso essenziale",
+    "Telo mare"
+  ]
+}

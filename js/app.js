@@ -1,7 +1,8 @@
 const MONTHS_IT = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"];
 
-async function loadItinerary() {
-  const res = await fetch("data/itinerary.json");
+async function loadJSON(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`${path}: ${res.status}`);
   return res.json();
 }
 
@@ -133,11 +134,132 @@ function buildUI(data) {
   selectDay(defaultIndex);
 }
 
-loadItinerary().then(buildUI).catch(err => {
+function buildInfoUI(data) {
+  const container = document.getElementById("infoContainer");
+  const checkedKey = "skiathos-checklist-checked";
+  const checked = new Set(JSON.parse(localStorage.getItem(checkedKey) || "[]"));
+
+  const contactsHtml = `
+    <section class="info-card">
+      <h2 class="info-card-title">📇 Contatti e indirizzi</h2>
+      <ul class="contact-list">
+        ${data.contacts.map(c => `
+          <li class="contact-item">
+            <div class="contact-label">${c.label}</div>
+            <div class="contact-value ${c.value === "Da inserire" ? "placeholder" : ""}">${
+              c.tel
+                ? `<a class="place-link" href="tel:${c.tel}">${c.value}</a>`
+                : c.mapsQuery
+                ? `<a class="place-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapsQuery)}" target="_blank" rel="noopener">${c.value}</a>`
+                : c.value
+            }</div>
+            ${c.note ? `<div class="contact-note">${c.note}</div>` : ""}
+          </li>
+        `).join("")}
+      </ul>
+    </section>
+  `;
+
+  const notesHtml = `
+    <section class="info-card">
+      <h2 class="info-card-title">🧭 Da sapere</h2>
+      <ul class="practical-notes">
+        ${data.practicalNotes.map(n => `<li>${n}</li>`).join("")}
+      </ul>
+    </section>
+  `;
+
+  const checklistHtml = `
+    <section class="info-card">
+      <h2 class="info-card-title">🧳 Checklist bagaglio</h2>
+      <ul class="checklist" id="checklist">
+        ${data.packingChecklist.map((item, i) => `
+          <li>
+            <label class="checklist-item">
+              <input type="checkbox" data-i="${i}" ${checked.has(String(i)) ? "checked" : ""} />
+              <span>${item}</span>
+            </label>
+          </li>
+        `).join("")}
+      </ul>
+    </section>
+  `;
+
+  container.innerHTML = contactsHtml + notesHtml + checklistHtml;
+
+  container.querySelectorAll("#checklist input[type=checkbox]").forEach(box => {
+    box.addEventListener("change", () => {
+      if (box.checked) checked.add(box.dataset.i);
+      else checked.delete(box.dataset.i);
+      localStorage.setItem(checkedKey, JSON.stringify([...checked]));
+      box.closest(".checklist-item").classList.toggle("done", box.checked);
+    });
+    box.closest(".checklist-item").classList.toggle("done", box.checked);
+  });
+}
+
+function buildSocialUI(itinerary, tips) {
+  const container = document.getElementById("socialContainer");
+  const places = itinerary.places || [];
+
+  if (!places.length) {
+    container.innerHTML = `<p class="social-empty">Nessun luogo ancora disponibile.</p>`;
+    return;
+  }
+
+  container.innerHTML = `
+    <p class="social-intro">Consigli pratici per i migliori scatti nei luoghi del viaggio.</p>
+    <div class="social-list">
+      ${places.map(p => {
+        const tip = tips[p.slug]?.tip;
+        return `
+          <section class="social-card">
+            ${p.image
+              ? `<img class="social-img" src="${p.image}" alt="${p.label}" loading="lazy" />`
+              : `<div class="social-img social-img-placeholder">🗺️</div>`}
+            <div class="social-body">
+              <h3 class="social-place">${p.label}</h3>
+              <p class="social-tip">${tip || "Consigli in arrivo per questo luogo."}</p>
+            </div>
+          </section>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function setupTabs() {
+  const tabBar = document.getElementById("tabBar");
+  tabBar.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBar.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b === btn));
+      document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === btn.dataset.page));
+      window.scrollTo({ top: 0 });
+    });
+  });
+}
+
+setupTabs();
+
+loadJSON("data/itinerary.json").then(buildUI).catch(err => {
   document.getElementById("daysContainer").innerHTML =
     `<p style="color:white;text-align:center;padding:2rem;">Impossibile caricare il programma. Riprova più tardi.</p>`;
   console.error(err);
 });
+
+loadJSON("data/info.json").then(buildInfoUI).catch(err => {
+  document.getElementById("infoContainer").innerHTML =
+    `<p class="social-empty">Impossibile caricare le info. Riprova più tardi.</p>`;
+  console.error(err);
+});
+
+Promise.all([loadJSON("data/itinerary.json"), loadJSON("data/social-tips.json").catch(() => ({}))])
+  .then(([itinerary, tips]) => buildSocialUI(itinerary, tips))
+  .catch(err => {
+    document.getElementById("socialContainer").innerHTML =
+      `<p class="social-empty">Impossibile caricare i consigli. Riprova più tardi.</p>`;
+    console.error(err);
+  });
 
 if ("serviceWorker" in navigator) {
   // quando una nuova versione del service worker prende il controllo

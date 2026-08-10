@@ -16,7 +16,7 @@
         {
           "type": "note",
           "icon": "🛬",
-          "html": "16.00 - ARRIVO @ <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Raina%20Studio%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">RAINA STUDIO</a>"
+          "html": "16.00 - ARRIVO @ <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Rania%20Studios%2C%20Georgiou%20Karaiskaki%204A%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">RANIA STUDIOS</a>"
         },
         {
           "type": "note",
@@ -389,6 +389,83 @@
         },
         "activity": null
       }
+    }
+  ],
+  "places": [
+    {
+      "slug": "agia-eleni",
+      "label": "Agia Eleni",
+      "image": "images/places/agia-eleni.jpg"
+    },
+    {
+      "slug": "skopelos",
+      "label": "Skopelos",
+      "image": "images/places/skopelos.jpg"
+    },
+    {
+      "slug": "kastani",
+      "label": "Kastani",
+      "image": "images/places/kastani.jpg"
+    },
+    {
+      "slug": "panormos",
+      "label": "Panormos",
+      "image": "images/places/panormos.jpg"
+    },
+    {
+      "slug": "agios-ioannis-kastri",
+      "label": "Agios Ioannis a Castri",
+      "image": "images/places/agios-ioannis-kastri.jpg"
+    },
+    {
+      "slug": "kryfi-ammos",
+      "label": "Kryfi Ammos",
+      "image": null
+    },
+    {
+      "slug": "moni-evangelistrias",
+      "label": "Monastero di Evangelistria",
+      "image": "images/places/moni-evangelistrias.jpg"
+    },
+    {
+      "slug": "elia-beach",
+      "label": "Elia Beach",
+      "image": null
+    },
+    {
+      "slug": "lalaria-beach",
+      "label": "Lalaria Beach",
+      "image": "images/places/lalaria-beach.jpg"
+    },
+    {
+      "slug": "tripia-petra",
+      "label": "Tripia Petra",
+      "image": "images/places/tripia-petra.jpg"
+    },
+    {
+      "slug": "skotini-cave",
+      "label": "Skotini Cave",
+      "image": null
+    },
+    {
+      "slug": "galazia-cave",
+      "label": "Galazia Cave",
+      "image": null
+    },
+    {
+      "slug": "kastro",
+      "label": "Kastro",
+      "image": "images/places/kastro.jpg"
+    },
+    {
+      "slug": "megas-gialos",
+      "label": "Megas Gialos",
+      "image": "images/places/megas-gialos.jpg"
+    },
+    {
+      "slug": "mikros-aselinos",
+      "label": "Mikros Aselinos",
+      "image": "images/places/mikros-aselinos.jpg"
     }
   ]
 }

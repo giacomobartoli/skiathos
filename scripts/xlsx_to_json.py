@@ -92,7 +92,7 @@ PLACES = [
     ("Megas Gialos", "Megas Gialos, Skiathos, Grecia"),
     ("Megas Giolas", "Megas Gialos, Skiathos, Grecia"),
     ("Mikros Aselinos", "Mikros Aselinos Beach, Skiathos, Grecia"),
-    ("Raina Studio", "Raina Studio, Skiathos, Grecia"),
+    ("Rania Studios", "Rania Studios, Georgiou Karaiskaki 4A, Skiathos, Grecia"),
     ("Kastani", "Kastani Beach, Skopelos, Grecia"),
     ("Panormos", "Panormos Beach, Skopelos, Grecia"),
     ("Skotini", "Skotini Cave, Skiathos, Grecia"),
@@ -117,7 +117,7 @@ QUERY_TO_SLUG = {
     "Tripia Petra, Skiathos, Grecia": "tripia-petra",
     "Megas Gialos, Skiathos, Grecia": "megas-gialos",
     "Mikros Aselinos Beach, Skiathos, Grecia": "mikros-aselinos",
-    "Raina Studio, Skiathos, Grecia": "raina-studio",
+    "Rania Studios, Georgiou Karaiskaki 4A, Skiathos, Grecia": "rania-studios",
     "Kastani Beach, Skopelos, Grecia": "kastani",
     "Panormos Beach, Skopelos, Grecia": "panormos",
     "Skotini Cave, Skiathos, Grecia": "skotini-cave",
@@ -127,26 +127,28 @@ QUERY_TO_SLUG = {
     "Basilikos, Skiathos, Grecia": "basilikos",
 }
 
-# etichetta leggibile mostrata sotto la foto nel carosello
+# etichetta leggibile mostrata sotto la foto nel carosello — ordinata
+# cronologicamente (giorno di viaggio in cui compare la prima volta), così
+# la lista in Social scorre come il racconto del viaggio
 SLUG_LABELS = {
-    "agios-ioannis-kastri": "Agios Ioannis a Castri",
-    "moni-evangelistrias": "Monastero di Evangelistria",
-    "windmill-restaurant": "The Windmill Restaurant",
-    "skopelos": "Skopelos",
-    "agia-eleni": "Agia Eleni",
-    "kryfi-ammos": "Kryfi Ammos",
-    "elia-beach": "Elia Beach",
-    "lalaria-beach": "Lalaria Beach",
-    "tripia-petra": "Tripia Petra",
-    "megas-gialos": "Megas Gialos",
-    "mikros-aselinos": "Mikros Aselinos",
-    "raina-studio": "Raina Studio",
-    "kastani": "Kastani",
-    "panormos": "Panormos",
-    "skotini-cave": "Skotini Cave",
-    "galazia-cave": "Galazia Cave",
-    "kastro": "Kastro",
+    "agia-eleni": "Agia Eleni",                      # 17
+    "skopelos": "Skopelos",                           # 18
+    "kastani": "Kastani",                             # 18
+    "panormos": "Panormos",                           # 18
+    "agios-ioannis-kastri": "Agios Ioannis a Castri",  # 18
+    "kryfi-ammos": "Kryfi Ammos",                     # 19
+    "moni-evangelistrias": "Monastero di Evangelistria",  # 19
+    "elia-beach": "Elia Beach",                       # 21
+    "lalaria-beach": "Lalaria Beach",                 # 22
+    "tripia-petra": "Tripia Petra",                   # 22
+    "skotini-cave": "Skotini Cave",                   # 22
+    "galazia-cave": "Galazia Cave",                   # 22
+    "kastro": "Kastro",                               # 22
+    "megas-gialos": "Megas Gialos",                   # 23
+    "mikros-aselinos": "Mikros Aselinos",             # 24
+    "rania-studios": "Rania Studios",
     "basilikos": "Basilikos",
+    "windmill-restaurant": "The Windmill Restaurant",
 }
 
 IMAGES_DIR = WEBAPP_DIR / "images" / "places"
@@ -203,6 +205,13 @@ def guess_icon(text: str) -> str:
     return DEFAULT_ICON
 
 
+# refusi noti nel foglio originale, corretti in visualizzazione senza
+# dover toccare l'Excel (es. il nome reale della struttura è "Rania Studios")
+TEXT_FIXES = [
+    (re.compile(r"\bRAINA STUDIO\b", re.IGNORECASE), "RANIA STUDIOS"),
+]
+
+
 def read_cell_text(ws, col: str, row: int):
     val = ws[f"{col}{row}"].value
     if val is None:
@@ -210,6 +219,8 @@ def read_cell_text(ws, col: str, row: int):
     text = unicodedata.normalize("NFC", str(val)).strip()
     if not text or text.lower() in STRAY_NAME_ONLY:
         return None
+    for pattern, replacement in TEXT_FIXES:
+        text = pattern.sub(replacement, text)
     return text
 
 
@@ -316,8 +327,22 @@ def main():
             },
         })
 
+    # elenco di tutti i luoghi "riconosciuti" (per la sezione Social), con
+    # la foto se disponibile — indipendentemente da quali giorni li citano.
+    # Ristoranti/alloggio esclusi: non sono "spot fotografici".
+    NOT_A_PHOTO_SPOT = {"basilikos", "windmill-restaurant", "rania-studios"}
+    places = [
+        {
+            "slug": slug,
+            "label": label,
+            "image": f"images/places/{slug}.jpg" if (IMAGES_DIR / f"{slug}.jpg").exists() else None,
+        }
+        for slug, label in SLUG_LABELS.items()
+        if slug not in NOT_A_PHOTO_SPOT
+    ]
+
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    payload = json.dumps({"trip": "Skiathos", "year": YEAR, "days": days},
+    payload = json.dumps({"trip": "Skiathos", "year": YEAR, "days": days, "places": places},
                           ensure_ascii=False, indent=2)
     OUT_PATH.write_text(payload, encoding="utf-8")
     print(f"Scritto {OUT_PATH} ({len(days)} giorni)")
@@ -333,6 +358,8 @@ CACHED_ASSETS = [
     WEBAPP_DIR / "css" / "style.css",
     WEBAPP_DIR / "js" / "app.js",
     WEBAPP_DIR / "data" / "itinerary.json",
+    WEBAPP_DIR / "data" / "info.json",
+    WEBAPP_DIR / "data" / "social-tips.json",
     WEBAPP_DIR / "manifest.webmanifest",
 ]
 
