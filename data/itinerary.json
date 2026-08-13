@@ -49,10 +49,25 @@
           "type": "note",
           "icon": "🛵",
           "html": "9.00 - CONSEGNA MOTORINO"
+        },
+        {
+          "type": "note",
+          "icon": "📍",
+          "html": "<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Koukounaries%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Koukounaries</a> BeachIA"
+        },
+        {
+          "type": "paragraph",
+          "html": "&quot;Domenica si fa sul serio: modalità veri turisti ON! 😎<br>Destinazione <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Koukounaries%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Koukounaries Beach</a>, una delle spiagge più belle e famose di Skiathos. E quale occasione migliore per iniziare anche a prendere un po’ di confidenza con il nostro bolide?<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Koukounaries%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Koukounaries</a> è una spiaggia super attrezzata: lettini e ombrelloni, sport acquatici, docce, spogliatoi, bar e taverne dove fermarsi per un buon piatto di pesce o qualche specialità greca. Nel tardo pomeriggio, poi, alcuni bar iniziano ad animarsi con musica e DJ set: perché anche una giornata di mare può tranquillamente trasformarsi in aperitivo.&quot;"
         }
       ],
       "isComplete": true,
-      "images": [],
+      "images": [
+        {
+          "slug": "koukounaries",
+          "src": "images/places/koukounaries.jpg",
+          "caption": "Koukounaries Beach"
+        }
+      ],
       "evening": {
         "dinner": {
           "status": "restaurant",
@@ -189,10 +204,26 @@
       "date": "2026-08-20",
       "weekday": "Giovedì",
       "day": 20,
-      "owner": "Giulia",
-      "blocks": [],
-      "isComplete": false,
-      "images": [],
+      "owner": "Giacomo",
+      "blocks": [
+        {
+          "type": "note",
+          "icon": "📍",
+          "html": "<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Mikros%20Aselinos%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">MIKROS ASELINOS</a>"
+        },
+        {
+          "type": "paragraph",
+          "html": "Per una giornata all&#x27;insegna del totale relax e della natura selvaggia, la spiaggia di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Mikros%20Aselinos%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Mikros Aselinos</a> rappresenta una delle gemme più tranquille della costa nord di Skiathos. Immersa in una baia intima e circondata da una vegetazione rigogliosa che crea uno splendido contrasto con le sue acque cristalline, questa caletta di sabbia e ciottoli è perfetta per chi cerca un&#x27;atmosfera lontana dalla calca. La mattinata scorre lenta tra nuotate e snorkeling lungo le scogliere rocciose che proteggono la baia, mentre a pranzo ci si può rifugiare all&#x27;ombra della caratteristica e informale taverna affacciata sul mare per gustare piatti tradizionali e pesce fresco. Un&#x27;oasi di pace autentica dove lasciarsi cullare dal suono delle onde fino al tardo pomeriggio."
+        }
+      ],
+      "isComplete": true,
+      "images": [
+        {
+          "slug": "mikros-aselinos",
+          "src": "images/places/mikros-aselinos.jpg",
+          "caption": "Mikros Aselinos"
+        }
+      ],
       "evening": {
         "dinner": {
           "status": "tbd",
@@ -313,26 +344,20 @@
       "date": "2026-08-24",
       "weekday": "Lunedì",
       "day": 24,
-      "owner": "Giacomo",
+      "owner": "Giulia",
       "blocks": [
         {
           "type": "note",
           "icon": "📍",
-          "html": "<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Mikros%20Aselinos%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">MIKROS ASELINOS</a>"
+          "html": "<a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Agistros%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">AGISTROS BEACH</a>"
         },
         {
           "type": "paragraph",
-          "html": "Per una giornata all&#x27;insegna del totale relax e della natura selvaggia, la spiaggia di <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Mikros%20Aselinos%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Mikros Aselinos</a> rappresenta una delle gemme più tranquille della costa nord di Skiathos. Immersa in una baia intima e circondata da una vegetazione rigogliosa che crea uno splendido contrasto con le sue acque cristalline, questa caletta di sabbia e ciottoli è perfetta per chi cerca un&#x27;atmosfera lontana dalla calca. La mattinata scorre lenta tra nuotate e snorkeling lungo le scogliere rocciose che proteggono la baia, mentre a pranzo ci si può rifugiare all&#x27;ombra della caratteristica e informale taverna affacciata sul mare per gustare piatti tradizionali e pesce fresco. Un&#x27;oasi di pace autentica dove lasciarsi cullare dal suono delle onde fino al tardo pomeriggio."
+          "html": "&quot;Destinazione <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Agistros%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Agistros Beach</a>, una piccola caletta accanto a <a class=\"place-link\" href=\"https://www.google.com/maps/search/?api=1&query=Elia%20Beach%2C%20Skiathos%2C%20Grecia\" target=\"_blank\" rel=\"noopener\">Elia Beach</a>, ancora più raccolta e tranquilla. Qui niente grandi folle o stabilimenti affollati: pochi fortunati, sabbia dorata e tanta, tantissima pace. 🏝️☀️ L’ideale per staccare davvero, sdraiarsi al sole e godersi qualche ora di mare senza pensieri. E quando il sole si fa sentire, basta rifugiarsi nella pineta ombreggiata alle spalle della spiaggia<br>Per pranzo, rigorosamente schiscia 🥪🍉: ci portiamo tutto da casa e ci facciamo un bel pranzo al sacco direttamente in spiaggia. Niente ristoranti, niente orari, solo mare, relax e la consapevolezza che oggi non abbiamo assolutamente fretta.<br>Mood della giornata: caletta nascosta, piedi nella sabbia, pranzo improvvisato e modalità bradipo attivata. 🦥🌊&quot;"
         }
       ],
       "isComplete": true,
-      "images": [
-        {
-          "slug": "mikros-aselinos",
-          "src": "images/places/mikros-aselinos.jpg",
-          "caption": "Mikros Aselinos"
-        }
-      ],
+      "images": [],
       "evening": {
         "dinner": {
           "status": "restaurant",
@@ -345,12 +370,16 @@
       "date": "2026-08-25",
       "weekday": "Martedì",
       "day": 25,
-      "owner": null,
+      "owner": "Giulia",
       "blocks": [
         {
           "type": "note",
           "icon": "🧳",
           "html": "sistemazione bagagli"
+        },
+        {
+          "type": "paragraph",
+          "html": "Una giornata da vivere senza troppi programmi: si parte, si improvvisa e si vede dove ci porta la strada. 🚗🌊✨"
         }
       ],
       "isComplete": true,
@@ -378,6 +407,11 @@
           "type": "note",
           "icon": "✈️",
           "html": "13.11 MALPENSA EXPRESS"
+        },
+        {
+          "type": "note",
+          "icon": "📍",
+          "html": "LAVATRICE, LAVARTICE: TUTTI INSIEME FACCIAMO LA … LAVATRICEEEEE!"
         }
       ],
       "isComplete": true,
@@ -392,6 +426,11 @@
     }
   ],
   "places": [
+    {
+      "slug": "koukounaries",
+      "label": "Koukounaries Beach",
+      "image": "images/places/koukounaries.jpg"
+    },
     {
       "slug": "agia-eleni",
       "label": "Agia Eleni",
@@ -426,6 +465,11 @@
       "slug": "moni-evangelistrias",
       "label": "Monastero di Evangelistria",
       "image": "images/places/moni-evangelistrias.jpg"
+    },
+    {
+      "slug": "mikros-aselinos",
+      "label": "Mikros Aselinos",
+      "image": "images/places/mikros-aselinos.jpg"
     },
     {
       "slug": "elia-beach",
@@ -463,9 +507,9 @@
       "image": "images/places/megas-gialos.jpg"
     },
     {
-      "slug": "mikros-aselinos",
-      "label": "Mikros Aselinos",
-      "image": "images/places/mikros-aselinos.jpg"
+      "slug": "agistros",
+      "label": "Agistros Beach",
+      "image": null
     }
   ]
 }

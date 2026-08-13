@@ -7,15 +7,18 @@ Rilancialo ogni volta che modifichi l'Excel:
 
 Logica di lettura (il foglio non ha una griglia rigida: ogni giorno è una
 colonna B..M). Per ogni colonna/giorno raccogliamo tutti i blocchi di testo
-non vuoti dalle righe 4-11 (attività di giorno), in ordine, e li
-classifichiamo così:
+non vuoti dalle righe 4-12 (attività di giorno, saltando la riga owner), in
+ordine, e li classifichiamo così:
   - "heading": testo corto e in grassetto/font grande -> titolo/luogo
   - "paragraph": testo lungo (>=100 caratteri) -> descrizione della giornata
   - "note": tutto il resto -> chip con icona (voli, bagagli, spesa...)
 
-La riga 12 (cena) e la riga 13 (nota/attività serale) sono sempre nella
-stessa posizione per ogni giorno, quindi le trattiamo separatamente come
-sezione "Sera" (vedi classify_dinner).
+La riga 5 (owner) è sempre "Giulia"/"Giacomo" (o vuota), la riga 13 (cena) e
+la riga 14 (nota/attività serale) sono sempre nella stessa posizione per
+ogni colonna — vedi OWNER_ROW/DINNER_ROW/EVENING_ROW. Se in futuro l'Excel
+guadagna o perde righe, aggiorna queste costanti di conseguenza (rilancia
+lo script e confronta con quanto stampato: se cena/sera escono storte per
+quasi tutti i giorni, è quasi sempre un disallineamento di riga).
 """
 import hashlib
 import html
@@ -38,9 +41,10 @@ SW_PATH = WEBAPP_DIR / "sw.js"
 SHEET_NAME = "Giornaliero"
 DAY_COLUMNS = list("BCDEFGHIJKLM")  # 12 giorni
 FIRST_ROW = 4
-LAST_ROW = 11        # attività/descrizione/logistica del giorno
-DINNER_ROW = 12       # sempre la cena, per ogni colonna
-EVENING_ROW = 13      # sempre la nota/attività serale, per ogni colonna
+LAST_ROW = 12         # attività/descrizione/logistica del giorno
+OWNER_ROW = 5          # "Giulia" / "Giacomo" (o vuota), per ogni colonna
+DINNER_ROW = 13        # sempre la cena, per ogni colonna
+EVENING_ROW = 14       # sempre la nota/attività serale, per ogni colonna
 YEAR = 2026
 MONTH = 8
 
@@ -59,16 +63,11 @@ DEFAULT_ICON = "\U0001F4CD"  # 📍
 
 WEEKDAYS_IT = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"]
 
-# owner della giornata (chi ha in mano il programma) — indicizzato per giorno del mese
-OWNERS = {
-    16: "Giulia", 17: "Giulia",
-    18: "Giacomo", 19: "Giacomo",
-    20: "Giulia", 21: "Giulia",
-    22: "Giacomo", 23: "Giacomo", 24: "Giacomo",
-}
+# nomi ammessi come owner nella riga dedicata (OWNER_ROW)
+VALID_OWNERS = {"giulia", "giacomo"}
 
-# blocchi che erano solo un'annotazione informale di owner nel foglio originale
-# (ora sostituita dal badge "owner" strutturato) -> li scartiamo per non duplicare
+# in caso un nome isolato compaia per errore fuori dalla riga owner
+# (es. residuo di una vecchia annotazione informale) -> lo scartiamo
 STRAY_NAME_ONLY = {"giulia", "giacomo"}
 
 # luoghi/ristoranti riconosciuti nei testi -> query per Google Maps.
@@ -92,6 +91,9 @@ PLACES = [
     ("Megas Gialos", "Megas Gialos, Skiathos, Grecia"),
     ("Megas Giolas", "Megas Gialos, Skiathos, Grecia"),
     ("Mikros Aselinos", "Mikros Aselinos Beach, Skiathos, Grecia"),
+    ("Koukounaries Beach", "Koukounaries Beach, Skiathos, Grecia"),
+    ("Koukounaries", "Koukounaries Beach, Skiathos, Grecia"),
+    ("Agistros Beach", "Agistros Beach, Skiathos, Grecia"),
     ("Rania Studios", "Rania Studios, Georgiou Karaiskaki 4A, Skiathos, Grecia"),
     ("Kastani", "Kastani Beach, Skopelos, Grecia"),
     ("Panormos", "Panormos Beach, Skopelos, Grecia"),
@@ -117,6 +119,8 @@ QUERY_TO_SLUG = {
     "Tripia Petra, Skiathos, Grecia": "tripia-petra",
     "Megas Gialos, Skiathos, Grecia": "megas-gialos",
     "Mikros Aselinos Beach, Skiathos, Grecia": "mikros-aselinos",
+    "Koukounaries Beach, Skiathos, Grecia": "koukounaries",
+    "Agistros Beach, Skiathos, Grecia": "agistros",
     "Rania Studios, Georgiou Karaiskaki 4A, Skiathos, Grecia": "rania-studios",
     "Kastani Beach, Skopelos, Grecia": "kastani",
     "Panormos Beach, Skopelos, Grecia": "panormos",
@@ -131,6 +135,7 @@ QUERY_TO_SLUG = {
 # cronologicamente (giorno di viaggio in cui compare la prima volta), così
 # la lista in Social scorre come il racconto del viaggio
 SLUG_LABELS = {
+    "koukounaries": "Koukounaries Beach",             # 16
     "agia-eleni": "Agia Eleni",                      # 17
     "skopelos": "Skopelos",                           # 18
     "kastani": "Kastani",                             # 18
@@ -138,6 +143,7 @@ SLUG_LABELS = {
     "agios-ioannis-kastri": "Agios Ioannis a Castri",  # 18
     "kryfi-ammos": "Kryfi Ammos",                     # 19
     "moni-evangelistrias": "Monastero di Evangelistria",  # 19
+    "mikros-aselinos": "Mikros Aselinos",             # 20
     "elia-beach": "Elia Beach",                       # 21
     "lalaria-beach": "Lalaria Beach",                 # 22
     "tripia-petra": "Tripia Petra",                   # 22
@@ -145,7 +151,7 @@ SLUG_LABELS = {
     "galazia-cave": "Galazia Cave",                   # 22
     "kastro": "Kastro",                               # 22
     "megas-gialos": "Megas Gialos",                   # 23
-    "mikros-aselinos": "Mikros Aselinos",             # 24
+    "agistros": "Agistros Beach",                     # 24
     "rania-studios": "Rania Studios",
     "basilikos": "Basilikos",
     "windmill-restaurant": "The Windmill Restaurant",
@@ -212,12 +218,14 @@ TEXT_FIXES = [
 ]
 
 
-def read_cell_text(ws, col: str, row: int):
+def read_cell_text(ws, col: str, row: int, allow_stray_name: bool = False):
     val = ws[f"{col}{row}"].value
     if val is None:
         return None
     text = unicodedata.normalize("NFC", str(val)).strip()
-    if not text or text.lower() in STRAY_NAME_ONLY:
+    if not text:
+        return None
+    if not allow_stray_name and text.lower() in STRAY_NAME_ONLY:
         return None
     for pattern, replacement in TEXT_FIXES:
         text = pattern.sub(replacement, text)
@@ -253,8 +261,13 @@ def main():
         day_num = 15 + i
         d = date(YEAR, MONTH, day_num)
 
+        owner_text = read_cell_text(ws, col, OWNER_ROW, allow_stray_name=True)
+        owner = owner_text.strip().capitalize() if owner_text and owner_text.strip().lower() in VALID_OWNERS else None
+
         blocks = []
         for row in range(FIRST_ROW, LAST_ROW + 1):
+            if row == OWNER_ROW:
+                continue
             text = read_cell_text(ws, col, row)
             if not text:
                 continue
@@ -317,7 +330,7 @@ def main():
             "date": d.isoformat(),
             "weekday": WEEKDAYS_IT[d.weekday()],
             "day": day_num,
-            "owner": OWNERS.get(day_num),
+            "owner": owner,
             "blocks": blocks,
             "isComplete": is_complete,
             "images": images,
